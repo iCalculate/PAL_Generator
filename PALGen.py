@@ -18,16 +18,15 @@ Position = [[0,0]]
 matrix = [Position] * 1
 try:
 	while True:
-		##print(x,y)
-		Key = input("Enter your input: ")
-		if (Key == "\\"):
-			print("in the if")
+		Key = input("Enter to Add: ")
+		print(Key)
+		if (Key == ""):
 			x, y = pyautogui.position()
 			New_Postion = [[x,y]]
 			Position.extend(New_Postion)
 			print("New = " + str(New_Postion))
 			print("Tot = " + str(Position))
-		elif (Key == "/"):
+		elif (Key == "\\"):     #Use \ to finish Adding
 			ColorList = get_color(Position[0][0],Position[0][1])
 			for i in range(len(Position)-1) :
 				New_ColorList = get_color(Position[i+1][0],Position[i+1][1])
@@ -48,5 +47,14 @@ with open(filename,'w') as f:
 				str(ColorList[j][1])+" "+ \
 				str(ColorList[j][2])+"\n")
 
-os.rename('./write_data.txt','./GetColor.pal')
+if os.path.exists('./GetColor.pal'):
+	Ans = input("Whether to overwrite the original file? (y/n) :")
+	if (Ans == "y"):
+		os.remove('./GetColor.pal')
+		os.rename('./write_data.txt','./GetColor.pal')
+		pass
+	elif (Ans == "n"):
+		NewFileName = input("Input New Name: ")
+		os.rename('./write_data.txt','./' + NewFileName + '.pal')
+
 	
