@@ -15,22 +15,21 @@ def get_color(x, y):
 	return [[r, g, b]]
 
 Position = [[0,0]]
-matrix = [Position] * 1
+ColorList = get_color(Position[0][0],Position[0][1])
+
 try:
 	while True:
 		Key = input("Enter to Add: ")
-		print(Key)
 		if (Key == ""):
 			x, y = pyautogui.position()
 			New_Postion = [[x,y]]
+			New_ColorList = get_color(New_Postion[0][0],New_Postion[0][1])
 			Position.extend(New_Postion)
-			print("New = " + str(New_Postion))
-			print("Tot = " + str(Position))
+			ColorList.extend(New_ColorList)
+			print("New_Postion = " + str(New_Postion))
+			print("New_Color = " + str(New_ColorList))
+			print(Key)
 		elif (Key == "\\"):     #Use \ to finish Adding
-			ColorList = get_color(Position[0][0],Position[0][1])
-			for i in range(len(Position)-1) :
-				New_ColorList = get_color(Position[i+1][0],Position[i+1][1])
-				ColorList.extend(New_ColorList)
 			break
 except KeyboardInterrupt:
 	print('\nExit.')
@@ -56,5 +55,7 @@ if os.path.exists('./GetColor.pal'):
 	elif (Ans == "n"):
 		NewFileName = input("Input New Name: ")
 		os.rename('./write_data.txt','./' + NewFileName + '.pal')
+else :
+	os.rename('./write_data.txt','./GetColor.pal')
 
 	
