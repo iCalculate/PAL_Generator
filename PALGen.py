@@ -19,7 +19,7 @@ ColorList = get_color(Position[0][0],Position[0][1])
 
 try:
 	while True:
-		Key = input("Enter to Add: ")
+		Key = input("Press Enter to Add: ")
 		if (Key == ""):
 			x, y = pyautogui.position()
 			New_Postion = [[x,y]]
